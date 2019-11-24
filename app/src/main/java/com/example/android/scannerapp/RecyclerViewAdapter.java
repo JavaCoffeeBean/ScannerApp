@@ -59,6 +59,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 .load(mBookImages.get(position))
                 .into(holder.bookImage);
 
+
         holder.bookName.setText(mBookNames.get(position));
         Log.d(TAG, "onBindViewHolder: this method has finished");
 

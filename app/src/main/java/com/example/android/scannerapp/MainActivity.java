@@ -62,29 +62,29 @@ public class MainActivity extends AppCompatActivity {
 
 //        Example
 
-        mBookImages.add("https://i.pinimg.com/474x/51/f2/25/51f225cc7735e271da581e71e1d42041.jpg");
+        mBookImages.add("https://images-na.ssl-images-amazon.com/images/I/51M%2BMu05lCL._SX343_BO1,204,203,200_.jpg");
         mBookNames.add("Their Eyes Were Watching God");
-       /* mBookAuthors.add("Zora Hurston");*/
+        mBookAuthors.add("Zora Hurston");
 
-        mBookImages.add("https://pbs.twimg.com/profile_images/430129632310878209/Wiu5QAFe.jpeg");
-        mBookNames.add("Sloppy Joe");
-      /*  mBookAuthors.add("Zora Hurston");*/
+        mBookImages.add("https://images-na.ssl-images-amazon.com/images/I/51rqbjzojiL._SX356_BO1,204,203,200_.jpg");
+        mBookNames.add("Z for Zachariah");
+        mBookAuthors.add("Robert C. O'brien");
 
-        mBookImages.add("https://www.yummyhealthyeasy.com/wp-content/uploads/2018/04/california-sushi-rolls-4.jpg");
-        mBookNames.add("Sushi");
-        /*mBookAuthors.add("Zora Hurston");*/
+        mBookImages.add("https://img.buzzfeed.com/buzzfeed-static/static/2013-10/enhanced/webdr01/10/10/enhanced-buzz-24944-1381414376-1.jpg?downsize=700:*&output-format=auto&output-quality=auto");
+        mBookNames.add("Goosebumbs");
+        mBookAuthors.add("RL Stein");
 
-        mBookImages.add("https://www.sprinklesomesugar.com/wp-content/uploads/2017/02/IMG_6846.jpg");
-        mBookNames.add("Red Velvet Cookies");
-    /*    mBookAuthors.add("Zora Hurston");*/
+        mBookImages.add("https://images-na.ssl-images-amazon.com/images/I/511FGQPR30L._SX302_BO1,204,203,200_.jpg");
+        mBookNames.add("When Things Fall Apart");
+        mBookAuthors.add("Chinua Achebe");
 
-        mBookImages.add("https://www.jessicagavin.com/wp-content/uploads/2015/03/shrimp-spring-rolls-with-dipping-sauce-1200.jpg");
-        mBookNames.add("Spring Rolls");
-       /* mBookAuthors.add("Zora Hurston");*/
+        mBookImages.add("http://cdn.shopify.com/s/files/1/2697/1746/products/1984-book-cover-art-book-cover-prints-2_1531c558-4ea7-4a8b-95f4-1fa3534f0ee9_1200x1200.jpg?v=1571739186");
+        mBookNames.add("1984");
+        mBookAuthors.add("George Orwell");
 
-        mBookImages.add("http://blog.williams-sonoma.com/wp-content/uploads/2018/03/bouchon-bakery-macarons-smaller-800px.jpg");
-        mBookNames.add("Macarons");
-       /* mBookAuthors.add("Zora Hurston");*/
+        mBookImages.add("https://prodimage.images-bn.com/pimages/9781610427678_p0_v1_s550x406.jpg");
+        mBookNames.add("Julius Cesar");
+        mBookAuthors.add("Shakespear");
 
 
 
