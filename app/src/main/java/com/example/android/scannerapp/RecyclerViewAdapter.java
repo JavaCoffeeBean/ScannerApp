@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.annotation.GlideModule;
 
 import java.util.ArrayList;
 
@@ -52,19 +53,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Log.d(TAG, "onBindViewHolder: called.");
+        System.out.println(mBookImages.size());
         Glide.with(mContext)
                 .asBitmap()
                 .load(mBookImages.get(position))
-                .into(holder.recipeImage);
+                .into(holder.bookImage);
 
-        holder.recipeName.setText(mImageNames.get(position));
+        holder.bookName.setText(mBookNames.get(position));
+        Log.d(TAG, "onBindViewHolder: this method has finished");
 
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, "onClick: clicked on: " + mImageNames.get(position));
+                Log.d(TAG, "onClick: clicked on: " + mBookNames.get(position));
 
-                Toast.makeText(mContext, mImageNames.get(position), Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, mBookNames.get(position), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -72,25 +75,27 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public int getItemCount() {
-        return mImageNames.size();
+        return mBookNames.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         RelativeLayout parentLayout;
-        TextView recipeName;
-        ImageButton favoriteButton;
-        Button cartButton;
-        ImageView recipeImage;
+        TextView bookName;
+        TextView author;
+        ImageButton deleteButton;
+        ImageButton addToReturnedButton;
+        ImageView bookImage;
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            parentLayout = itemView.findViewById(R.id.parent_layout1);
-            recipeName = itemView.findViewById(R.id.recipe_name);
-            favoriteButton = itemView.findViewById(R.id.favorite_button);
-            cartButton = itemView.findViewById(R.id.cart_button);
-            recipeImage = itemView.findViewById(R.id.recipe_image);
+            parentLayout = itemView.findViewById(R.id.notReturned_parent_layout);
+            bookName = itemView.findViewById(R.id.bookname_listview);
+            author = itemView.findViewById(R.id.bookauthor_listview);
+            deleteButton = itemView.findViewById(R.id.delete_button);
+            addToReturnedButton = itemView.findViewById(R.id.add_to_returned_button);
+            bookImage = itemView.findViewById(R.id.bookcover_listview);
         }
     }
 }
