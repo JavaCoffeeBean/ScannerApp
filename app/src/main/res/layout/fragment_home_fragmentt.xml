@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeFragmentt">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context=".MainActivity"
+        android:orientation="vertical">
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/red">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/book_list"/>
+
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tablayoutt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/themeColor"
+                app:tabTextColor="@color/white">
+
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/returned_Tab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Returned" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/not_returned_Tab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Not-Returned" />
+
+
+
+
+            </com.google.android.material.tabs.TabLayout>
+
+        </RelativeLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </androidx.viewpager.widget.ViewPager>
+
+    </LinearLayout>
+
+</FrameLayout>

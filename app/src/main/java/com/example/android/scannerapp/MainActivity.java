@@ -1,21 +1,41 @@
 package com.example.android.scannerapp;
 
+import android.app.Application;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 
+
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.tabs.TabItem;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    private TabLayout tabLayout;
+    private  ViewPager viewPager;
+    private TabItem tab1, tab2;
+    public PageAdapter pagerAdapter;
 
     private static final String TAG = "MainActivity";
 
@@ -31,27 +51,134 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<ImageButton> DeleteButtons2 = new ArrayList<>();
     private ArrayList<ImageButton> AddToReturnedButtons2 = new ArrayList<>();
 
-
-
-    
-
-
-
+    private ActionBar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.returned_fragment);
+        setContentView(R.layout.home_page);
 
         Log.d(TAG, "onCreate: started.");
 
+        toolbar = getSupportActionBar();
+
+        BottomNavigationView navigation = findViewById(R.id.navigationView);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
 
 
-        initImageBitmaps2();
+//        toolbar.setTitle("Home");
+        loadFragment(new HomeFragmentt());
+        /*tabLayout = findViewById(R.id.tablayoutt);
+        tab1 = findViewById(R.id.returned_Tab);
+        tab2 = findViewById(R.id.not_returned_Tab);
+        viewPager = findViewById(R.id.viewpager);*/
 
+        Log.d(TAG, "tabsFunctionality: engaged");
+
+
+        /*initImageBitmaps2();*/
 
     }
+
+        public void tabsFunctionality() {
+
+            Log.d(TAG, "tabsFunctionality: engaged");
+
+            LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View view = inflater.inflate(R.layout.fragment_home_fragmentt, null);
+
+
+             tabLayout =  view.findViewById(R.id.tablayoutt);
+             tab1 =  view.findViewById(R.id.returned_Tab);
+             tab2 =  view.findViewById(R.id.not_returned_Tab);
+             viewPager =  view.findViewById(R.id.viewpager);
+
+
+
+
+
+            pagerAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+            viewPager.setAdapter(pagerAdapter);
+
+            tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                @Override
+                public void onTabSelected(TabLayout.Tab tab) {
+                    viewPager.setCurrentItem(tab.getPosition());
+                    if (tab.getPosition() == 0) {
+                        pagerAdapter.notifyDataSetChanged();
+
+                        initImageBitmaps();
+                        initRecyclerView();
+                    } else if (tab.getPosition() == 1) {
+                        pagerAdapter.notifyDataSetChanged();
+                        initImageBitmaps2();
+                        initRecyclerView2();
+
+                    }
+
+                }
+
+                @Override
+                public void onTabUnselected(TabLayout.Tab tab) {
+
+                }
+
+                @Override
+                public void onTabReselected(TabLayout.Tab tab) {
+
+
+                }
+            });
+
+            viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        }
+
+
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.home:
+//                    toolbar.setTitle("Home");
+                    loadFragment(new HomeFragmentt());
+
+                    tabsFunctionality();
+                    loadFragment(new HomeFragmentt());
+
+
+
+                    return true;
+                case R.id.reminders:
+//                    toolbar.setTitle("Reminders");
+                    loadFragment(new RemindersFragment());
+                    return true;
+                case R.id.settings:
+//                    toolbar.setTitle("Settings");
+                    loadFragment(new SettingsFragment());
+                    return true;
+
+            }
+            return false;
+        }
+    };
+
+
+    private void loadFragment(Fragment fragment) {
+        // load fragment
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+
+
+
+
 
 
 
@@ -145,11 +272,18 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d(TAG, "onStart: this method started");
 
-        initRecyclerView2();
+        /*initRecyclerView2();*/
+
+
+
 
     }
 
-    private void initRecyclerView(){
+    public void testMethod() {
+        System.out.println("newborn");
+    }
+
+    public void initRecyclerView(){
         Log.d(TAG, "initRecyclerView: init RecyclerView.");
         RecyclerView recyclerView = findViewById(R.id.notReturned_recyclerview);
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(this,  mBookNames, mBookImages, DeleteButtons, AddToReturnedButtons, mBookAuthors);
@@ -157,13 +291,15 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    private void initRecyclerView2(){
+    public void initRecyclerView2(){
         Log.d(TAG, "initRecyclerView: init RecyclerView.");
         RecyclerView recyclerView = findViewById(R.id.returned_recyclerview2);
         ReturnedAdapter adapter2 = new ReturnedAdapter(this,  mBookNames2, mBookImages2, DeleteButtons2, AddToReturnedButtons2, mBookAuthors2);
         recyclerView.setAdapter(adapter2);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
+
+
 
 
 
